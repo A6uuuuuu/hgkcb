@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#fff</color>
+    <color name="colorAccent">#000</color>
+    <color name="background">#fafafa</color>
+    <color name="gray">#efefef</color>
+    <color name="gray_dark">#707070</color>
+    <!--Light Theme-->
+    <color name="theme_background_light">#ffffff</color>
+    <color name="theme_text_content_light">#8a000000</color>
+    <color name="theme_text_title_light">#aaaaaa</color>
+    <color name="theme_text_title_large_light">#262626</color>
+
+    <!--Dark Theme-->
+    <color name="theme_background_dark">#262626</color>
+    <color name="theme_text_content_dark">#cfcfcf</color>
+    <color name="theme_text_title_dark">#bbbbbb</color>
+    <color name="theme_text_title_large_dark">#bfbfbf</color>
+
+</resources>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="cn.edu.hnit.schedule.viewmodel.SettingListViewModel"/>
+        <variable
+            name="textColor"
+            type="int" />
+        <variable
+            name="titleColor"
+            type="int" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_ui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="@string/ui"
+                android:textColor="@{titleColor}"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/ui_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.darkThemeOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setDarkThemeOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/ui_dark_theme"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/ui_text_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.smallTextSizeOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setSmallTextSizeOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/ui_small_text_size"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/title_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="@string/widget"
+                android:textColor="@{titleColor}"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/widget_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.widgetStatusOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setWidgetStatusOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/widget_status"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/widget_jump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.widgetJumpOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setWidgetJumpOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/widget_jump"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/widget_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.widgetDateOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setWidgetDateOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/widget_date"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/title_sync"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="@string/sync"
+                android:textColor="@{titleColor}"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/sync_server"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:clickable="false"
+                android:checked="@{vm.syncOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setSyncOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/sync_from_server"
+                android:textColor="#bbb"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/title_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="@string/app"
+                android:textColor="@{titleColor}"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/app_remind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.appRemindOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setAppRemindOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/app_remind"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/app_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:clickable="false"
+                android:checked="@{vm.appUpdateOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setAppUpdateOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/app_update"
+                android:textColor="#bbb"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

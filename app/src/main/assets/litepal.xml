@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="Data" />
+
+    <version value="4" />
+
+    <list>
+        <mapping class="cn.edu.hnit.schedule.model.Course" />
+    </list>
+
+</litepal>

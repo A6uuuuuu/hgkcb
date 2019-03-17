@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">湖工课程表</string>
+    <string name="mon">周一</string>
+    <string name="tues">周二</string>
+    <string name="wed">周三</string>
+    <string name="thur">周四</string>
+    <string name="fri">周五</string>
+    <string name="sat">周六</string>
+    <string name="sun">周日</string>
+    <string name="wait">同步课表中，请等待</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="no_courses">今天没有课呢</string>
+    <string name="setting">设置</string>
+    <string name="ui">UI相关</string>
+    <string name="ui_dark_theme">使用深色主题</string>
+    <string name="ui_small_text_size">使用更小的字体</string>
+    <string name="widget">桌面小部件</string>
+    <string name="widget_status">小部件右侧显示课程状态</string>
+    <string name="widget_jump">点击桌面小部件打开app</string>
+    <string name="widget_refresh">点击桌面小部件刷新数据</string>
+    <string name="widget_date">小部件不显示周数和星期</string>
+    <string name="sync">同步设置</string>
+    <string name="sync_from_server">从备份服务器同步课表</string>
+    <string name="app">其它功能</string>
+    <string name="app_remind">开启上课提醒</string>
+    <string name="app_update">自动检查更新</string>
+    <string name="about">关于湖工课程表</string>
+    <string name="add_course">添加课程</string>
+    <string name="back">返回</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
