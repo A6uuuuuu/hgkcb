@@ -16,41 +16,54 @@ import es.dmoral.toasty.Toasty;
 public class AddCourseTimeFragment extends Fragment {
 
     private FragmentAddCourseTimeBinding mBinding;
-    private int id = 0;
-    private DeleteCall call;
+    private FragmentCall call;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil
                 .inflate(inflater, R.layout.fragment_add_course_time, container, false);
-        call = (DeleteCall) getActivity();
+        call = (FragmentCall) getActivity();
         mBinding.jc.setOnClickListener(view -> showJcDialog());
         mBinding.week.setOnClickListener(view -> showWeekDialog());
-        mBinding.delete.setOnClickListener(view -> deleteSelf());
+        mBinding.delete.setOnClickListener(view -> delete());
+        mBinding.add.setOnClickListener(view -> add());
         return mBinding.getRoot();
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    //显示选择节次的Dialog
     private void showJcDialog() {
 
     }
 
+    //显示选择周次的Dialog
     private void showWeekDialog() {
 
     }
 
-    private void deleteSelf() {
-        if (id == 0 & getContext() != null)
-            Toasty.error(getContext(), "至少要有一个时间段").show();
-        else
-            call.delete(id);
+    //删除这个fragment
+    private void delete() {
+        call.deleteFragment(this);
     }
 
-    public interface DeleteCall {
-        void delete(int id);
+    //添加一个fragment
+    private void add() {
+        call.addFragment();
+        setAddBtnStatus(false);
+    }
+
+    //设置这个fragment的添加按钮的显示状态
+    public void setAddBtnStatus(boolean bool) {
+        if (bool) {
+            mBinding.add.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.add.setVisibility(View.GONE);
+        }
+    }
+
+    //与Activity的接口
+    public interface FragmentCall {
+        void deleteFragment(AddCourseTimeFragment fragment);
+        void addFragment();
     }
 
 }
