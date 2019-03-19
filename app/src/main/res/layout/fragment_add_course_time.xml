@@ -95,12 +95,12 @@
                     app:srcCompat="@drawable/ic_alarm" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/jc_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
-                    android:text="周一 第1-2节"
+                    android:text="星期一 第1-2节"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                     app:srcCompat="@drawable/ic_date_range" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/week_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

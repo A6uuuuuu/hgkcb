@@ -30,9 +30,18 @@ public class AddCourseTimeFragment extends Fragment {
         return mBinding.getRoot();
     }
 
+    public void ok(int start, int end, String weekday) {
+        String str = weekday + "  第" + start + "-" + end + "节";
+        mBinding.jcTv.setText(str);
+    }
+
     //显示选择节次的Dialog
     private void showJcDialog() {
-
+        JcPickerDialog dialog = new JcPickerDialog();
+        if (getFragmentManager() != null) {
+            dialog.setParentFragment(this);
+            dialog.show(getFragmentManager(), "jcPicker");
+        }
     }
 
     //显示选择周次的Dialog

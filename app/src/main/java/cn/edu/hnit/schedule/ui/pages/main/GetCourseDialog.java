@@ -22,12 +22,11 @@ import java.util.Objects;
 import cn.edu.hnit.schedule.databinding.DialogGetCourseBinding;
 import cn.edu.hnit.schedule.repository.CourseRepository;
 import cn.edu.hnit.schedule.R;
-import cn.edu.hnit.schedule.repository.SettingRepository;
 import es.dmoral.toasty.Toasty;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class GetCourseFragment extends DialogFragment implements CourseRepository.GetVercodeCallback{
+public class GetCourseDialog extends DialogFragment implements CourseRepository.GetVercodeCallback{
 
     private CourseRepository mRepository = new CourseRepository(this);
     private DialogGetCourseBinding mBinding;

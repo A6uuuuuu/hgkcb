@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.edu.hnit.schedule.model.Course;
-import cn.edu.hnit.schedule.ui.pages.main.GetCourseFragment;
+import cn.edu.hnit.schedule.ui.pages.main.GetCourseDialog;
 import cn.edu.hnit.schedule.util.HttpUtil;
 import cn.edu.hnit.schedule.util.JsoupUtil;
 import okhttp3.Call;
@@ -26,10 +26,10 @@ import okhttp3.internal.annotations.EverythingIsNonNull;
 public class CourseRepository {
 
     private HttpUtil httpUtil = new HttpUtil();
-    private GetCourseFragment fragment;
+    private GetCourseDialog fragment;
     private GetVercodeCallback callback;
 
-    public CourseRepository(GetCourseFragment fragment) {
+    public CourseRepository(GetCourseDialog fragment) {
         this.fragment = fragment;
         callback = fragment;
     }
