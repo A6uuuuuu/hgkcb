@@ -1,7 +1,6 @@
 package cn.edu.hnit.schedule.ui.pages.add;
 
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,67 +13,58 @@ import android.view.Window;
 import com.aigestudio.wheelpicker.WheelPicker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import cn.edu.hnit.schedule.R;
-import cn.edu.hnit.schedule.databinding.DialogJcPickerBinding;
+import cn.edu.hnit.schedule.databinding.DialogWeekPickerBinding;
 
-public class JcPickerDialog extends DialogFragment {
+public class WeekPickerDialog extends DialogFragment {
 
-    private DialogJcPickerBinding mBinding;
+    private DialogWeekPickerBinding mBinding;
     private AddCourseTimeFragment fragment;
+    private List<Integer> weeks = new ArrayList<>();
     private int start = 1;
     private int end = 1;
-    private String weekday = "星期一";
-    List<Integer> jc = new ArrayList<>();
-    List<String> weekdays;
+    private int MAX_WEEK = 23;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        for (int i = 1; i <= 12; i++) {
-            jc.add(i);
+        for (int i = 1; i <= MAX_WEEK; i++) {
+            weeks.add(i);
         }
-        weekdays = Arrays.asList("星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_jc_picker, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_week_picker, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         Objects.requireNonNull(getDialog().getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         setPicker();
         mBinding.ok.setOnClickListener(view -> {
-            fragment.jcOK(start, end, weekday);
+            fragment.weekOK(start, end);
             this.dismiss();
         });
         return mBinding.getRoot();
     }
 
     private void setPicker() {
-        //初始化，设置数据
-        initPicker(mBinding.jcPicker1);
-        mBinding.jcPicker1.setData(jc);
-        initPicker(mBinding.jcPicker2);
-        mBinding.jcPicker2.setData(jc);
-        initPicker(mBinding.weekdayPicker);
-        mBinding.weekdayPicker.setData(weekdays);
-
+        initPicker(mBinding.weekPicker1);
+        initPicker(mBinding.weekPicker2);
         //设置滚动监听
-        mBinding.jcPicker1.setOnItemSelectedListener((picker, data, position) -> {
+        mBinding.weekPicker1.setOnItemSelectedListener((picker, data, position) -> {
             List<Integer> _data = new ArrayList<>();
-            for (int i = position + 1; i <= 12; i++) {
+            for (int i = position + 1; i <= MAX_WEEK; i++) {
                 _data.add(i);
             }
             start = (Integer) data;
-            mBinding.jcPicker2.setData(_data);
-            mBinding.jcPicker2.setSelectedItemPosition(0);
+            mBinding.weekPicker2.setData(_data);
+            mBinding.weekPicker2.setSelectedItemPosition(0);
             end = start;
         });
-        mBinding.jcPicker2.setOnItemSelectedListener((picker, data, position) -> {
+        mBinding.weekPicker2.setOnItemSelectedListener((picker, data, position) -> {
             if ((Integer) data < start) {
                 picker.setSelectedItemPosition(start - 1);
                 end = start;
@@ -82,16 +72,10 @@ public class JcPickerDialog extends DialogFragment {
                 end = (Integer) data;
             }
         });
-        mBinding.weekdayPicker.setOnItemSelectedListener((picker, data, position) -> {
-            weekday = (String) data;
-        });
     }
 
     private void initPicker(WheelPicker picker) {
-        //picker.setCyclic(true);
-        //picker.setData(data);
-        //picker.setIndicator(true);
-        //picker.setIndicatorColor(Color.parseColor("#000000"));
+        picker.setData(weeks);
         picker.setAtmospheric(true);
         picker.setCurved(true);
         picker.setItemTextSize(72);
@@ -103,5 +87,6 @@ public class JcPickerDialog extends DialogFragment {
     public void setParentFragment(AddCourseTimeFragment fragment) {
         this.fragment = fragment;
     }
+
 
 }

@@ -25,8 +25,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
                 android:foreground="?attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
                 app:cardCornerRadius="25dp"
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
-                    android:text="星期一 第1-2节"
+                    android:text="请选择节次"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
-                    android:text="1-23周"
+                    android:text="请选择周次"
                     android:textSize="18sp" />
             </LinearLayout>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,70 +14,61 @@
         app:cardElevation="0dp">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView8"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="选择节次"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.aigestudio.wheelpicker.WheelPicker
-                android:id="@+id/jc_picker1"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/ok"
-                app:layout_constraintStart_toEndOf="@+id/weekday_picker"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:gravity="center"
                 android:text=" - "
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/jc_picker2"
-                app:layout_constraintStart_toEndOf="@+id/jc_picker1"
-                app:layout_constraintTop_toTopOf="@+id/jc_picker2" />
+                app:layout_constraintBottom_toBottomOf="@+id/weekPicker2"
+                app:layout_constraintStart_toEndOf="@+id/weekPicker1"
+                app:layout_constraintTop_toTopOf="@+id/weekPicker2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="选择周次"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.aigestudio.wheelpicker.WheelPicker
-                android:id="@+id/jc_picker2"
+                android:id="@+id/weekPicker1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/ok"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <com.aigestudio.wheelpicker.WheelPicker
+                android:id="@+id/weekPicker2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/ok"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView9" />
-
-            <com.aigestudio.wheelpicker.WheelPicker
-                android:id="@+id/weekday_picker"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/ok"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/ok"
                 android:layout_width="80dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@android:color/transparent"

@@ -17,6 +17,8 @@ public class AddCourseTimeFragment extends Fragment {
 
     private FragmentAddCourseTimeBinding mBinding;
     private FragmentCall call;
+    public int start = 0;
+    public int end = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,9 +32,14 @@ public class AddCourseTimeFragment extends Fragment {
         return mBinding.getRoot();
     }
 
-    public void ok(int start, int end, String weekday) {
-        String str = weekday + "  第" + start + "-" + end + "节";
+    public void jcOK(int start, int end, String weekday) {
+        String str = weekday + "  " + start + " - " + end + "节";
         mBinding.jcTv.setText(str);
+    }
+
+    public void weekOK(int startWeek, int endWeek) {
+        String str = startWeek + " - " + endWeek + "周";
+        mBinding.weekTv.setText(str);
     }
 
     //显示选择节次的Dialog
@@ -46,7 +53,11 @@ public class AddCourseTimeFragment extends Fragment {
 
     //显示选择周次的Dialog
     private void showWeekDialog() {
-
+        WeekPickerDialog dialog = new WeekPickerDialog();
+        if (getFragmentManager() != null) {
+            dialog.setParentFragment(this);
+            dialog.show(getFragmentManager(), "weekPicker");
+        }
     }
 
     //删除这个fragment
