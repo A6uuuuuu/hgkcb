@@ -114,8 +114,8 @@ public class AddCourseActivity extends MyActivity implements AddCourseTimeFragme
                 Course course = new Course(name, teacher, time, place);
                 course.save();
                 Toasty.success(this, "保存成功").show();
-                refresh();  //通知其它页面刷新
-                finish();   //结束这个activity
+                refresh();      //通知其它页面刷新
+                finish();       //结束这个activity
             }
         }
     }

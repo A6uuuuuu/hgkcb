@@ -30,6 +30,7 @@ import cn.edu.hnit.schedule.model.Course;
 import cn.edu.hnit.schedule.repository.DateRepository;
 import cn.edu.hnit.schedule.repository.SettingRepository;
 import cn.edu.hnit.schedule.ui.controller.CourseController;
+import cn.edu.hnit.schedule.ui.pages.info.CourseInfoActivity;
 
 import static android.view.View.inflate;
 
@@ -107,33 +108,10 @@ public class ScheduleFragment extends MyFragment {
     //添加点击事件
     private void addOnClickCourseEvent(CourseView view) {
         view.setOnClickListener(view1 -> {
-            Course course = LitePal.find(Course.class, view.getId());
-            MyDialog dialog = new MyDialog(getContext(), inflate(getContext(), R.layout.dialog_more_info, null));
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-            TextView courseName = dialog.findViewById(R.id.course_name);
-            TextView teacherName = dialog.findViewById(R.id.teacher_name);
-            TextView classRoom = dialog.findViewById(R.id.class_room);
-            TextView jc = dialog.findViewById(R.id.jc);
-            TextView zc = dialog.findViewById(R.id.zc);
-            courseName.setText(course.getName());
-            teacherName.setText(course.getTeacher());
-            classRoom.setText(course.getPlace());
-            String[] time = handleCourseTime(course.getTime());
-            jc.setText(time[1]);
-            zc.setText(time[0]);
-            dialog.findViewById(R.id.btn_delete_course).setOnClickListener(view2 -> showAlertDialog(dialog, view.getId()));
-            dialog.show();
+            Intent intent = new Intent(getActivity(), CourseInfoActivity.class);
+            intent.putExtra("id", view.getId());
+            startActivity(intent);
         });
-    }
-
-    //处理课程时间
-    private String[] handleCourseTime(String time) {
-        String[] t = time.split(" ", 2);
-        String[] t2 = t[1].split("\\)\\(", 2);
-        String[] result = new String[2];
-        result[0] = t2[0].replace("(", "");
-        result[1] = t2[1].replace(")", "");
-        return result;
     }
 
     //删除课程

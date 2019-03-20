@@ -28,6 +28,7 @@
     <string name="about">关于湖工课程表</string>
     <string name="add_course">添加课程</string>
     <string name="back">返回</string>
+    <string name="info">课程详情</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

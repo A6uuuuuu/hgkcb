@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
+        <activity android:name=".ui.pages.info.CourseInfoActivity"></activity>
 
         <meta-data
             android:name="design_width_in_dp"
@@ -40,9 +41,10 @@
             android:name=".service.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".ui.pages.add.AddCourseActivity"/>
+        <activity android:name=".ui.pages.add.AddCourseActivity" />
         <activity android:name=".ui.pages.setting.SettingActivity" />
-        <activity android:name=".ui.pages.main.MainActivity"
+        <activity
+            android:name=".ui.pages.main.MainActivity"
             android:theme="@style/LaunchScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,7 +65,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/schedule_widget_info" />
         </receiver>
-
     </application>
 
 </manifest>
