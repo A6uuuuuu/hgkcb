@@ -48,7 +48,7 @@ public class JcPickerDialog extends DialogFragment {
         Objects.requireNonNull(getDialog().getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         setPicker();
         mBinding.ok.setOnClickListener(view -> {
-            fragment.jcOK(start, end, weekday);
+            fragment.saveJc(start, end, weekday);
             this.dismiss();
         });
         return mBinding.getRoot();

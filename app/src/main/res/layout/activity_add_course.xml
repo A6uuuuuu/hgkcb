@@ -115,6 +115,21 @@
                     app:layout_constraintStart_toEndOf="@+id/img2"
                     app:layout_constraintTop_toBottomOf="@+id/name" />
 
+                <EditText
+                    android:id="@+id/place"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="上课地点"
+                    android:inputType="textPersonName"
+                    android:paddingStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img3"
+                    app:layout_constraintTop_toBottomOf="@+id/teacher" />
+
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="30dp"
@@ -145,20 +160,6 @@
                     app:layout_constraintTop_toTopOf="@+id/place"
                     app:srcCompat="@drawable/ic_place" />
 
-                <EditText
-                    android:id="@+id/place"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@null"
-                    android:ems="10"
-                    android:hint="上课地点"
-                    android:inputType="textPersonName"
-                    android:paddingStart="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/img3"
-                    app:layout_constraintTop_toBottomOf="@+id/teacher" />
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
 

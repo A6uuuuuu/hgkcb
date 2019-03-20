@@ -37,18 +37,23 @@ public class CourseListWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.week_day, "星期" + weekFormat.format(new Date()).replace("周", ""));
         views.setTextViewText(R.id.week, "第" + new DateRepository(context).getCurrentWeek() + "周");
         views.setRemoteAdapter(R.id.course_list, new Intent(context, WidgetService.class));
+
         //判断是否开启点击跳转主界面功能
         if (mRepository.getSwitchOption("widget_jump")) {
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setPendingIntentTemplate(R.id.root, pendingIntent);
+            views.setPendingIntentTemplate(R.id.header, pendingIntent);
+            views.setPendingIntentTemplate(R.id.course_list, pendingIntent);
+            views.setPendingIntentTemplate(R.id.status, pendingIntent);
         }
+
         //判断是否隐藏日期和星期
         if (mRepository.getSwitchOption("widget_date")) {
             views.setViewVisibility(R.id.header, View.GONE);
         } else {
             views.setViewVisibility(R.id.header, View.VISIBLE);
         }
+
         //判断今天有没有课
         if (noCourse) {
             views.setViewVisibility(R.id.course_list, View.GONE);

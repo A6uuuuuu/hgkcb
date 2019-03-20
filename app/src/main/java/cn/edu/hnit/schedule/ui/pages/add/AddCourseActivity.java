@@ -1,6 +1,8 @@
 package cn.edu.hnit.schedule.ui.pages.add;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import java.util.List;
 import cn.edu.hnit.schedule.R;
 import cn.edu.hnit.schedule.custom.MyActivity;
 import cn.edu.hnit.schedule.databinding.ActivityAddCourseBinding;
+import cn.edu.hnit.schedule.model.Course;
 import es.dmoral.toasty.Toasty;
 
 public class AddCourseActivity extends MyActivity implements AddCourseTimeFragment.FragmentCall{
@@ -30,9 +33,9 @@ public class AddCourseActivity extends MyActivity implements AddCourseTimeFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_course);
-        addFragment();
         mBinding.back.setOnClickListener(view -> finish());
         mBinding.save.setOnClickListener(view -> saveCourse());
+        addFragment();
         refreshUi();
     }
 
@@ -84,7 +87,44 @@ public class AddCourseActivity extends MyActivity implements AddCourseTimeFragme
     }
 
     private void saveCourse() {
+        String name = mBinding.name.getText().toString();
+        String teacher = mBinding.teacher.getText().toString();
+        String place = mBinding.place.getText().toString();
+        for (AddCourseTimeFragment fragment : fragments) {
+            String time = "";
+            /*
+                为了配合CourseController只能这样子了
+                写成从教务系统获取的数据的格式
+             */
+            if (fragment.startJc == 0 | fragment.startWeek == 0) {
+                Toasty.error(this, " 节次或周次不能为空").show();
+            } else if ( name.equals("") | teacher.equals("") | place.equals("")) {
+                Toasty.error(this, " 课程信息不能为空").show();
+            } else {
+                if (fragment.startJc < 9) {
+                    time = fragment.weekday + "0" + fragment.startJc + "0" + fragment.endJc
+                            + " (" + fragment.startWeek + "-" + fragment.endWeek + "周)(" + fragment.startJc + "-" + fragment.endJc + "节)";
+                } else if (fragment.startJc == 9) {
+                    time = fragment.weekday + "0" + fragment.startJc + fragment.endJc
+                            + " (" + fragment.startWeek + "-" + fragment.endWeek + "周)(0" + fragment.startJc + "-" + fragment.endJc + "节)";
+                } else {
+                    time = fragment.weekday + fragment.startJc + fragment.endJc
+                            + " (" + fragment.startWeek + "-" + fragment.endWeek + "周)(" + fragment.startJc + "-" + fragment.endJc + "节)";
+                }
+                Course course = new Course(name, teacher, time, place);
+                course.save();
+                Toasty.success(this, "保存成功").show();
+                refresh();  //通知其它页面刷新
+                finish();   //结束这个activity
+            }
+        }
+    }
 
+    @SuppressLint("WrongConstant")
+    private void refresh() {
+        Intent intent = new Intent("REFRESH_UI");
+        intent.addFlags(0x01000000);
+        sendBroadcast(intent);
     }
 
 }

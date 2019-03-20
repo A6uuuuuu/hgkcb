@@ -11,14 +11,18 @@ import android.view.ViewGroup;
 
 import cn.edu.hnit.schedule.R;
 import cn.edu.hnit.schedule.databinding.FragmentAddCourseTimeBinding;
+import cn.edu.hnit.schedule.util.WeekdayUtil;
 import es.dmoral.toasty.Toasty;
 
 public class AddCourseTimeFragment extends Fragment {
 
     private FragmentAddCourseTimeBinding mBinding;
     private FragmentCall call;
-    public int start = 0;
-    public int end = 0;
+    public int weekday = 0;
+    public int startJc = 0;
+    public int endJc = 0;
+    public int startWeek = 0;
+    public int endWeek = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,12 +36,17 @@ public class AddCourseTimeFragment extends Fragment {
         return mBinding.getRoot();
     }
 
-    public void jcOK(int start, int end, String weekday) {
+    public void saveJc(int start, int end, String weekday) {
+        startJc = start;
+        endJc = end;
+        this.weekday = new WeekdayUtil().toInt(weekday);
         String str = weekday + "  " + start + " - " + end + "节";
         mBinding.jcTv.setText(str);
     }
 
-    public void weekOK(int startWeek, int endWeek) {
+    public void saveWeek(int start, int end) {
+        startWeek = start;
+        endWeek = end;
         String str = startWeek + " - " + endWeek + "周";
         mBinding.weekTv.setText(str);
     }

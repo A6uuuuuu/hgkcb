@@ -51,8 +51,8 @@ public class KeepAliveService extends JobService {
 
     private JobInfo getJobInfo() {
         JobInfo.Builder builder = new JobInfo.Builder(1, new ComponentName(this, KeepAliveService.class));
-        builder.setMinimumLatency(30 * 1000);
-        builder.setOverrideDeadline(120 * 1000);
+        builder.setMinimumLatency(60 * 1000);
+        builder.setOverrideDeadline(240 * 1000);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         return builder.build();
     }

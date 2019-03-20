@@ -130,7 +130,7 @@ public class CourseController {
                 int time[] = handleCourseTime(t);
                 String classRoom = handleClassRoom(course.getPlace());
                 addCourse(course.getId(), course.getName(), classRoom, time[0], time[1], time[2], inCurrentWeek(t[1]));
-                Log.d(TAG, "loadCourse: " + course.getName() + "inCurrentWeeks: " + inCurrentWeek(t[1]));
+                //Log.d(TAG, "loadCourse: " + course.getName() + "inCurrentWeeks: " + inCurrentWeek(t[1]));
             }
         }
     }
@@ -170,7 +170,7 @@ public class CourseController {
         int week = _time / pow(length - 1) % 10;
         int ord = (_time / pow(length - 2) % 10)*10 + (_time / pow(length - 3) % 10);
         int span = (_time / 10 % 10 * 10 + _time % 10) - ord + 1;
-        Log.d(TAG, "handleCourseTime: Length:" + length + "  ord:" + ord + "  span:" + span);
+        //Log.d(TAG, "handleCourseTime: Length:" + length + "  ord:" + ord + "  span:" + span);
         time[0] = ord;
         time[1] = week;
         time[2] = span;

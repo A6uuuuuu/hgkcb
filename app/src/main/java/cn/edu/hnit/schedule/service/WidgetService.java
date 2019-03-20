@@ -214,7 +214,7 @@ public class WidgetService extends RemoteViewsService {
                     return READY;
                 }
                 return NOTSTART;
-            } else if (_currentTime <= _end) {
+            } else if (_currentTime < _end) {
                 return PROCESSING;
             }
             return OVER;

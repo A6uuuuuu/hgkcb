@@ -44,7 +44,7 @@ public class WeekPickerDialog extends DialogFragment {
         Objects.requireNonNull(getDialog().getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         setPicker();
         mBinding.ok.setOnClickListener(view -> {
-            fragment.weekOK(start, end);
+            fragment.saveWeek(start, end);
             this.dismiss();
         });
         return mBinding.getRoot();
