@@ -21,11 +21,11 @@ import java.util.regex.Pattern;
 
 import cn.edu.hnit.schedule.model.Course;
 import cn.edu.hnit.schedule.repository.DateRepository;
+import cn.edu.hnit.schedule.util.CourseUtil;
 
 public class KeepAliveService extends JobService {
 
     private static final String TAG = "KeepAliveService";
-    private int currentWeek;
     private List<Course> courses = new ArrayList<>();
     
     @Override
@@ -61,10 +61,10 @@ public class KeepAliveService extends JobService {
     private void updateWidget() {
         courses.clear();
         List<Course> courses = LitePal.findAll(Course.class);
-        currentWeek = new DateRepository(getApplicationContext()).getCurrentWeek();
+        int currentWeek = new DateRepository(getApplicationContext()).getCurrentWeek();
         if (!courses.isEmpty()) {
             for (Course course : courses) {
-                if (inCurrentWeekDay(course.getTime().split(" ", 2))) {
+                if (new CourseUtil(currentWeek).inCurrentWeekDay(course.getTime().split(" ", 2))) {
                     this.courses.add(course);
                 }
             }
@@ -78,47 +78,6 @@ public class KeepAliveService extends JobService {
         intent.addFlags(0x01000000);
         sendBroadcast(intent);
         Log.d(TAG, "updateWidget: 小部件已更新");
-    }
-
-    //判断是否在本周及本日
-    private boolean inCurrentWeekDay(String[] time) {
-        String weekday = time[0].substring(0, 1);
-        boolean inCurrentWeekday = false;
-        boolean inCurrentWeek = false;
-        if (Integer.valueOf(weekday) == getWeekDay()) {
-            inCurrentWeekday = true;
-        }
-        String[] weeks = time[1].split("\\)\\(", 2);
-        weeks[0] = weeks[0].replace("(", "")
-                .replace(")", "")
-                .replace("周", "");
-        Pattern r1 = Pattern.compile(",");
-        Pattern r2 = Pattern.compile("-");
-        Matcher m = r1.matcher(weeks[0]);
-        int limit = 1;
-        while (m.find()) {
-            limit++;
-        }
-        String _weeks[] = weeks[0].split(",", limit);
-        for (String week : _weeks) {
-            m = r2.matcher(week);
-            if (m.find()) {
-                String[] range = week.split("-", 2);
-                if (currentWeek >= Integer.parseInt(range[0]) & currentWeek <= Integer.parseInt(range[1])) {
-                    inCurrentWeek = true;
-                }
-            } else if (Integer.parseInt(week) == currentWeek) {
-                inCurrentWeek = true;
-            }
-        }
-        return inCurrentWeek & inCurrentWeekday;
-    }
-
-    //获取星期
-    private int getWeekDay() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        return calendar.get(Calendar.DAY_OF_WEEK) - 1;
     }
 
 }
