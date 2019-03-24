@@ -114,6 +114,7 @@ public class ScheduleFragment extends MyFragment {
         });
     }
 
+    /*
     //删除课程
     private void deleteCourse(int id) {
         LitePal.delete(Course.class, id);
@@ -136,6 +137,7 @@ public class ScheduleFragment extends MyFragment {
             alertDialog.show();
         }
     }
+    */
 
     @SuppressLint("WrongConstant")
     public void refreshUi() {

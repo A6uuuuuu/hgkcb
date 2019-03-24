@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -74,6 +73,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/header"
                 app:srcCompat="@drawable/ic_add" />
 
         </android.support.v7.widget.CardView>
@@ -96,6 +96,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/header"
                 app:srcCompat="@drawable/ic_refresh" />
 
         </android.support.v7.widget.CardView>
@@ -118,6 +119,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/header"
                 app:srcCompat="@drawable/ic_settings" />
 
         </android.support.v7.widget.CardView>

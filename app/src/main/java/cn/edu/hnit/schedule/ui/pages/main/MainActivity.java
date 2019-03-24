@@ -97,6 +97,7 @@ public class MainActivity extends MyActivity implements HeaderFragment.BackToCur
 
             }
         });
+
         //判断周数设置初始页面
         int currentWeek = new DateRepository(getApplicationContext()).getCurrentWeek();
         if (currentWeek <= 22 & currentWeek > 0) {
