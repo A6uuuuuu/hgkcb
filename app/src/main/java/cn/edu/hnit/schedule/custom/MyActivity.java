@@ -94,6 +94,14 @@ public abstract class MyActivity extends AppCompatActivity {
         }
     }
 
+    public int getGray() {
+        if (new SettingRepository(this).getSwitchOption("ui_dark_theme")) {
+            return getResources().getColor(R.color.gray_dark);
+        } else {
+            return getResources().getColor(R.color.gray);
+        }
+    }
+
     public abstract void refreshUi();
 
 }

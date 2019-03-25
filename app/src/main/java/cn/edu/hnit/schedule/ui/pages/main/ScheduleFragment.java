@@ -114,31 +114,6 @@ public class ScheduleFragment extends MyFragment {
         });
     }
 
-    /*
-    //删除课程
-    private void deleteCourse(int id) {
-        LitePal.delete(Course.class, id);
-        refreshUi();
-    }
-
-    //是否删除dialog
-    private void showAlertDialog(MyDialog dialog, int id) {
-        if (getContext() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("删除课程");
-            builder.setMessage("确认要删除这节课吗?");
-            builder.setCancelable(true);
-            builder.setPositiveButton("确认", (dialogInterface, i) -> {
-                deleteCourse(id);
-                dialog.dismiss();
-            });
-            builder.setNegativeButton("取消", (dialogInterface, i) -> dialogInterface.dismiss());
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        }
-    }
-    */
-
     @SuppressLint("WrongConstant")
     public void refreshUi() {
         Intent intent = new Intent("REFRESH_UI");

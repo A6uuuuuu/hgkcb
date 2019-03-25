@@ -4,9 +4,7 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Build;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -15,11 +13,8 @@ import cn.edu.hnit.schedule.R;
 import cn.edu.hnit.schedule.custom.MyActivity;
 import cn.edu.hnit.schedule.databinding.ActivityMainBinding;
 import cn.edu.hnit.schedule.repository.DateRepository;
-import cn.edu.hnit.schedule.repository.SettingRepository;
 import cn.edu.hnit.schedule.service.KeepAliveService;
-import cn.edu.hnit.schedule.service.RemindService;
 import cn.edu.hnit.schedule.ui.adapter.PagerAdapter;
-import cn.edu.hnit.schedule.util.ServiceUtil;
 
 public class MainActivity extends MyActivity implements HeaderFragment.BackToCurrentWeekListener {
 
@@ -44,6 +39,7 @@ public class MainActivity extends MyActivity implements HeaderFragment.BackToCur
     @Override
     public void refreshUi() {
         reloadAdapter();
+        initStatusBar();
         mBinding.setBackgroundColor(getBackgroundColor());
     }
 
@@ -52,18 +48,8 @@ public class MainActivity extends MyActivity implements HeaderFragment.BackToCur
         viewPager.setCurrentItem(new DateRepository(getApplicationContext()).getCurrentWeek());
     }
 
-    //提醒服务
+    //服务
     public void initService() {
-        if (new SettingRepository(this).getSwitchOption("app_remind")) {
-            if (!new ServiceUtil().isServiceRunning(this, "RemindService")) {
-                Intent intent = new Intent(this, RemindService.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(intent);
-                } else {
-                    startService(intent);
-                }
-            }
-        }
         JobScheduler scheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
         scheduler.schedule(getJobInfo());
     }

@@ -75,11 +75,7 @@ public class CourseController {
 
         TextView name = new TextView(context);
         SettingRepository mRepository = new SettingRepository(context);
-        if (mRepository.getSwitchOption("ui_small_text_size")) {
-            name.setTextSize(TypedValue.COMPLEX_UNIT_PX, (((float) width - TEXT_PADDING_NAME * 2) / 4));
-        } else {
-            name.setTextSize(TypedValue.COMPLEX_UNIT_PX, (((float) width - TEXT_PADDING_NAME * 2) / TEXT_SIZE_NAME));
-        }
+        name.setTextSize(TypedValue.COMPLEX_UNIT_SP, mRepository.getSeekBarOption("ui_text_size"));
         name.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         name.setPadding(TEXT_PADDING_NAME, TEXT_PADDING_TOP, TEXT_PADDING_NAME, 0);
         //name.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));

@@ -6,6 +6,7 @@
     <color name="background">#fafafa</color>
     <color name="gray">#efefef</color>
     <color name="gray_dark">#707070</color>
+
     <!--Light Theme-->
     <color name="theme_background_light">#ffffff</color>
     <color name="theme_text_content_light">#8a000000</color>

@@ -8,15 +8,10 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import cn.edu.hnit.schedule.repository.SettingRepository;
 import cn.edu.hnit.schedule.service.KeepAliveService;
-import cn.edu.hnit.schedule.service.RemindService;
-
-import static android.content.ContentValues.TAG;
 
 public class SettingListViewModel extends AndroidViewModel {
 
@@ -37,13 +32,17 @@ public class SettingListViewModel extends AndroidViewModel {
         refreshUi();
     }
 
-    //小字体
-    public boolean getSmallTextSizeOption() {
-        return mRepository.getSwitchOption("ui_small_text_size");
+    //字体
+    public int getTextSizeOption() {
+        return mRepository.getSeekBarOption("ui_text_size") - 10;
     }
 
-    public void setSmallTextSizeOption(boolean bool) {
-        mRepository.setSwitchOption("ui_small_text_size", bool);
+    public String getTextSize() {
+        return mRepository.getSeekBarOption("ui_text_size") + "sp";
+    }
+
+    public void setTextSizeOption(int num) {
+        mRepository.setSeekBarOption("ui_text_size", num);
         refreshUi();
     }
 
@@ -92,28 +91,6 @@ public class SettingListViewModel extends AndroidViewModel {
 
     public void setSyncOption(boolean bool) {
         mRepository.setSwitchOption("sync_from_backup_server", bool);
-    }
-
-    //上课提醒
-    public boolean getAppRemindOption() {
-        return mRepository.getSwitchOption("app_remind");
-    }
-
-    @SuppressLint("WrongConstant")
-    public void setAppRemindOption(boolean bool) {
-        mRepository.setSwitchOption("app_remind", bool);
-        if (bool) {
-            Intent intent = new Intent(getApplication(), RemindService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                getApplication().startForegroundService(intent);
-            } else {
-                getApplication().startService(intent);
-            }
-        } else {
-            Intent intent = new Intent(getApplication(), RemindService.class);
-            getApplication().stopService(intent);
-        }
-        Log.d(TAG, "setAppRemindOption: " + bool);
     }
 
     //自动更新

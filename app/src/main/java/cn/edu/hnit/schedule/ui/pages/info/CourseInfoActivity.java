@@ -1,8 +1,9 @@
 package cn.edu.hnit.schedule.ui.pages.info;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import org.litepal.LitePal;
@@ -15,6 +16,7 @@ import cn.edu.hnit.schedule.model.Course;
 public class CourseInfoActivity extends MyActivity {
 
     private ActivityCourseInfoBinding mBinding;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +24,12 @@ public class CourseInfoActivity extends MyActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_course_info);
         refreshUi();
         mBinding.back.setOnClickListener(view -> finish());
+        mBinding.delete.setOnClickListener(view -> deleteCourse());
     }
 
     private void loadData() {
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 0);
+        id = intent.getIntExtra("id", 0);
         Course course = LitePal.find(Course.class, id);
         mBinding.name.setText(course.getName());
         mBinding.teacher.setText(course.getTeacher());
@@ -46,8 +49,29 @@ public class CourseInfoActivity extends MyActivity {
         return result;
     }
 
+    @SuppressLint("WrongConstant")
+    private void deleteCourse() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("删除课程");
+        builder.setMessage("确认要删除这节课吗?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("确认", (dialogInterface, i) -> {
+            LitePal.delete(Course.class, id);
+            Intent intent = new Intent("REFRESH_UI");
+            intent.addFlags(0x01000000);
+            sendBroadcast(intent);
+            finish();
+        });
+        builder.setNegativeButton("取消", (dialogInterface, i) -> dialogInterface.dismiss());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     @Override
     public void refreshUi() {
+        mBinding.setBackgroundColor(getBackgroundColor());
+        mBinding.setTitleColor(getTitleTextColor());
+        mBinding.setTextColor(getContentTextColor());
         initStatusBar();
         loadData();
     }

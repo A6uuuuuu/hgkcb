@@ -8,6 +8,9 @@
             name="backgroundColor"
             type="int" />
         <variable
+            name="backgroundGray"
+            type="int" />
+        <variable
             name="textColor"
             type="int" />
     </data>
@@ -62,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:background="#fafafa"
+            android:background="@{backgroundGray}"
             app:layout_constraintBottom_toTopOf="@+id/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +73,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff">
+                android:layout_height="wrap_content"
+                android:background="@{backgroundColor}">
 
                 <LinearLayout
                     android:id="@+id/time"
@@ -93,12 +96,17 @@
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="课程名称"
+                    android:autofillHints="@string/courseName"
+                    android:hint="@string/courseName"
+                    android:textColorHint="@{textColor}"
+                    android:textColor="@{textColor}"
                     android:inputType="textPersonName"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img1"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/teacher"
@@ -108,12 +116,17 @@
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="授课老师"
+                    android:autofillHints="@string/courseTeacher"
+                    android:hint="@string/courseTeacher"
+                    android:textColorHint="@{textColor}"
+                    android:textColor="@{textColor}"
                     android:inputType="textPersonName"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img2"
-                    app:layout_constraintTop_toBottomOf="@+id/name" />
+                    app:layout_constraintTop_toBottomOf="@+id/name"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/place"
@@ -123,12 +136,17 @@
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="上课地点"
+                    android:autofillHints="@string/coursePlace"
+                    android:hint="@string/coursePlace"
+                    android:textColorHint="@{textColor}"
+                    android:textColor="@{textColor}"
                     android:inputType="textPersonName"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img3"
-                    app:layout_constraintTop_toBottomOf="@+id/teacher" />
+                    app:layout_constraintTop_toBottomOf="@+id/teacher"
+                    tools:ignore="UnusedAttribute" />
 
                 <ImageView
                     android:id="@+id/img1"
@@ -138,7 +156,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/name"
-                    app:srcCompat="@drawable/ic_course_name" />
+                    app:srcCompat="@drawable/ic_course_name"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/img2"
@@ -148,7 +167,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/teacher"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/teacher"
-                    app:srcCompat="@drawable/ic_person" />
+                    app:srcCompat="@drawable/ic_person"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/img3"
@@ -158,7 +178,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/place"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/place"
-                    app:srcCompat="@drawable/ic_place" />
+                    app:srcCompat="@drawable/ic_place"
+                    tools:ignore="ContentDescription" />
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
@@ -167,17 +188,18 @@
             android:id="@+id/save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
+            android:background="@{backgroundColor}"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="保存"
+            android:text="@string/save"
+            android:textColor="@{textColor}"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:targetApi="m" />
+            tools:ignore="UnusedAttribute" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -23,6 +23,16 @@ public class SettingRepository {
         editor.apply();
     }
 
+    public int getSeekBarOption(String option) {
+        return pref.getInt(option, 13);
+    }
+
+    public void setSeekBarOption(String option, int num) {
+        SharedPreferences.Editor editor = context.getSharedPreferences("settings", Context.MODE_PRIVATE).edit();
+        editor.putInt(option, num);
+        editor.apply();
+    }
+
     /*
         设置偏移周数
      */

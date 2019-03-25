@@ -4,27 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="textColor"
+            type="int"/>
+        <variable
+            name="backgroundColor"
+            type="int" />
+        <variable
+            name="titleColor"
+            type="int"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+        android:background="@{backgroundColor}"
         android:fitsSystemWindows="true"
         tools:context="cn.edu.hnit.schedule.ui.pages.info.CourseInfoActivity">
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@{backgroundColor}"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/delete"
+            android:textColor="@{textColor}"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UnusedAttribute" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:paddingStart="8dp"
-            android:paddingEnd = "8dp"
+            android:paddingEnd="8dp"
             android:textSize="20sp"
+            android:textColor="@{textColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img1"
@@ -40,6 +66,7 @@
             android:paddingStart="8dp"
             android:paddingEnd = "8dp"
             android:textSize="20sp"
+            android:textColor="@{textColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img2"
             app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -54,6 +81,7 @@
             android:paddingStart="8dp"
             android:paddingEnd = "8dp"
             android:textSize="20sp"
+            android:textColor="@{textColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img3"
             app:layout_constraintTop_toBottomOf="@+id/teacher" />
@@ -68,6 +96,7 @@
             android:paddingStart="8dp"
             android:paddingEnd = "8dp"
             android:textSize="20sp"
+            android:textColor="@{textColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img3"
@@ -83,6 +112,7 @@
             android:paddingStart="8dp"
             android:paddingEnd = "8dp"
             android:textSize="20sp"
+            android:textColor="@{textColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/jc"
@@ -96,7 +126,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/name"
-            app:srcCompat="@drawable/ic_course_name" />
+            app:srcCompat="@drawable/ic_course_name"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/img2"
@@ -106,7 +137,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/teacher"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/teacher"
-            app:srcCompat="@drawable/ic_person" />
+            app:srcCompat="@drawable/ic_person"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/img3"
@@ -116,7 +148,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/place"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/place"
-            app:srcCompat="@drawable/ic_place" />
+            app:srcCompat="@drawable/ic_place"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -126,7 +159,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/jc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/jc"
-            app:srcCompat="@drawable/ic_alarm" />
+            app:srcCompat="@drawable/ic_alarm"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageView12"
@@ -136,7 +170,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/week"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/week"
-            app:srcCompat="@drawable/ic_date_range" />
+            app:srcCompat="@drawable/ic_date_range"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/title_widget2"
@@ -148,6 +183,7 @@
             android:gravity="center"
             android:text="@string/info"
             android:textSize="24sp"
+            android:textColor="@{titleColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

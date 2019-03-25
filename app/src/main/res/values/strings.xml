@@ -17,7 +17,7 @@
     <string name="setting">设置</string>
     <string name="ui">UI相关</string>
     <string name="ui_dark_theme">使用深色主题</string>
-    <string name="ui_small_text_size">使用更小的字体</string>
+    <string name="ui_text_size">课表字体大小</string>
     <string name="widget">桌面小部件</string>
     <string name="widget_status">小部件右侧显示课程状态</string>
     <string name="widget_jump">点击桌面小部件打开app</string>
@@ -38,6 +38,13 @@
     <string name="chooseWeek">选择周次</string>
     <string name="setCurrentWeek">设置当前周</string>
     <string name="time_range">时间段</string>
+    <string name="courseName">课程名称</string>
+    <string name="courseTeacher">课程老师</string>
+    <string name="coursePlace">上课地点</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+
+    <string name="emmm">注意：小部件的快速更新依赖于后台服务，这个后台理论上不会增加电量的消耗，所以需要手动将app加入系统应用白名单（或者在最近任务面板里锁住后台）以保证后台不会被系统回收，点击上面的显示课程状态开关将会跳转到白名单设置界面，如果没有跳转到白名单界面请自行搜索添加白名单的方法，如果你不需要小部件显示课程状态可以忽略这一点</string>
 
     <string name="header">header</string>
 

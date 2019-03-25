@@ -4,17 +4,17 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import cn.edu.hnit.schedule.R;
+import cn.edu.hnit.schedule.custom.MyFragment;
 import cn.edu.hnit.schedule.databinding.FragmentAddCourseTimeBinding;
 import cn.edu.hnit.schedule.util.WeekdayUtil;
 import es.dmoral.toasty.Toasty;
 
-public class AddCourseTimeFragment extends Fragment {
+public class AddCourseTimeFragment extends MyFragment {
 
     private FragmentAddCourseTimeBinding mBinding;
     private FragmentCall call;
@@ -33,7 +33,15 @@ public class AddCourseTimeFragment extends Fragment {
         mBinding.week.setOnClickListener(view -> showWeekDialog());
         mBinding.delete.setOnClickListener(view -> delete());
         mBinding.add.setOnClickListener(view -> add());
+        refreshUi();
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void refreshUi() {
+        mBinding.setBackgroundColor(getBackgroundColor());
+        mBinding.setTextColor(getContentTextColor());
+        mBinding.setBackgroundGray(getGray());
     }
 
     public void saveJc(int start, int end, String weekday) {

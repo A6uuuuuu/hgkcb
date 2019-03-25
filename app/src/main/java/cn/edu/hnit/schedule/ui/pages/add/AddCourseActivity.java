@@ -48,6 +48,7 @@ public class AddCourseActivity extends MyActivity implements AddCourseTimeFragme
     public void refreshUi() {
         initStatusBar();
         mBinding.setBackgroundColor(getBackgroundColor());
+        mBinding.setBackgroundGray(getGray());
         mBinding.setTextColor(getContentTextColor());
     }
 
