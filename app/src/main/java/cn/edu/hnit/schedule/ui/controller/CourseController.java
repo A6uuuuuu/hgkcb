@@ -28,6 +28,11 @@ import cn.edu.hnit.schedule.ui.pages.main.ScheduleFragment;
 
 import static android.content.ContentValues.TAG;
 
+/*
+    CourseController负责控制每一个页面的课程分配
+    它实现了将课程数据转化为view以及分配课程颜色、课程分组的功能
+ */
+
 public class CourseController {
 
     //布局参数
@@ -36,7 +41,6 @@ public class CourseController {
     private static final int TEXT_PADDING_TOP = 10;
     private static final int TEXT_PADDING_BOTTOM = 16;
     private static final float TEXT_SPACING = 1;
-    private static final float TEXT_SIZE_NAME = 3.7f;
     private static final float TEXT_SIZE_PLACE = 4f;
     private static final int MARGIN = 2;
     private static final int RADIUS = 12;
@@ -53,12 +57,16 @@ public class CourseController {
     private String[] colors = {"","#d0e6f4", "#fdb7bc", "#b4e9e2", "#fde38c", "#acd9f3", "#becbff", "#a7d7c5", "#facf5a", "#99ddcc", "#ffecda"};
 
     public CourseController(ScheduleFragment fragment) {
-        this.currentWeek = fragment.week;
+        this.currentWeek = fragment.getWeek();       //此处的currentWeek指当前页面的周数
         this.context = fragment.getContext();
         this.width = getWidth();
         loadCourse();
     }
 
+    /*
+        课程由三个view组成，一个CardView作为背景，一个TextView展示课程名称，一个TextView展示课程地点
+        通过设置GridLayout.Spec来确定课程在表中的位置
+     */
     private void addCourse(int id, String courseName, String classRoom, int row, int week, int span, boolean inCurrentWeek) {
         //View设置
         CourseView course = new CourseView(context);
@@ -73,17 +81,18 @@ public class CourseController {
         params.setMargins(dp2px(MARGIN), dp2px(MARGIN),dp2px(MARGIN),dp2px(MARGIN));
         course.setLayoutParams(params);
 
+        //课程名称设置
         TextView name = new TextView(context);
         SettingRepository mRepository = new SettingRepository(context);
         name.setTextSize(TypedValue.COMPLEX_UNIT_SP, mRepository.getSeekBarOption("ui_text_size"));
         name.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         name.setPadding(TEXT_PADDING_NAME, TEXT_PADDING_TOP, TEXT_PADDING_NAME, 0);
-        //name.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         CardView.LayoutParams nameParams = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         nameParams.gravity = Gravity.TOP;
         name.setLayoutParams(nameParams);
         name.setLineSpacing(0, TEXT_SPACING);
 
+        //课程地点设置
         TextView place = new TextView(context);
         place.setTextSize(TypedValue.COMPLEX_UNIT_PX, ((float) width - TEXT_PADDING_PLACE * 2) / TEXT_SIZE_PLACE);
         place.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

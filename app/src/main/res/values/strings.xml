@@ -17,6 +17,7 @@
     <string name="setting">设置</string>
     <string name="ui">UI相关</string>
     <string name="ui_dark_theme">使用深色主题</string>
+    <string name="ui_not_current_course">不显示非本周的课程</string>
     <string name="ui_text_size">课表字体大小</string>
     <string name="widget">桌面小部件</string>
     <string name="widget_status">小部件右侧显示课程状态</string>

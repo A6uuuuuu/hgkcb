@@ -106,28 +106,33 @@ public class GetCourseDialog extends DialogFragment implements CourseRepository.
 
     //封装一下Toast
     public void error(String str) {
-        Objects.requireNonNull(getActivity())
-                .runOnUiThread(() ->
-                        Toasty.error(Objects.requireNonNull(getContext()), str, Toast.LENGTH_SHORT).show());
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() ->
+                    Toasty.error(getActivity(), str, Toast.LENGTH_SHORT).show());
+        }
     }
 
     public void success(String str) {
-        Objects.requireNonNull(getActivity())
-                .runOnUiThread(() ->
-                        Toasty.success(Objects.requireNonNull(getContext()), str, Toast.LENGTH_SHORT).show());
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() ->
+                    Toasty.success(getActivity(), str, Toast.LENGTH_SHORT).show());
+        }
     }
 
     //切换到loading
     public void change() {
-        Objects.requireNonNull(getActivity())
-                .runOnUiThread(() ->
-                        mBinding.sync.setVisibility(View.GONE));
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() ->
+                            mBinding.sync.setVisibility(View.GONE));
+        }
     }
 
     //隐藏输入法
     private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity())
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mBinding.getRoot().getWindowToken(), 0);
+        if (getActivity() != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(mBinding.getRoot().getWindowToken(), 0);
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 
 import cn.edu.hnit.schedule.R;
 import cn.edu.hnit.schedule.custom.MyActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends MyActivity implements HeaderFragment.BackToCur
     private PagerAdapter adapter;
     private ViewPager viewPager;
     private ActivityMainBinding mBinding;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,13 @@ public class MainActivity extends MyActivity implements HeaderFragment.BackToCur
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadAdapter();
+        Log.d(TAG, "onResume");
     }
 
     @Override

@@ -32,6 +32,16 @@ public class SettingListViewModel extends AndroidViewModel {
         refreshUi();
     }
 
+    //不显示非本周的课程
+    public boolean getNotCurrentWeekOption() {
+        return mRepository.getSwitchOption("ui_not_current_week");
+    }
+
+    public void setNotCurrentWeekOption(boolean bool) {
+        mRepository.setSwitchOption("ui_not_current_week", bool);
+        refreshUi();
+    }
+
     //字体
     public int getTextSizeOption() {
         return mRepository.getSeekBarOption("ui_text_size") - 10;

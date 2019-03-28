@@ -1,6 +1,7 @@
 package cn.edu.hnit.schedule.ui.pages.main;
 
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -31,6 +32,7 @@ import cn.edu.hnit.schedule.repository.DateRepository;
 import cn.edu.hnit.schedule.repository.SettingRepository;
 import cn.edu.hnit.schedule.ui.controller.CourseController;
 import cn.edu.hnit.schedule.ui.pages.info.CourseInfoActivity;
+import cn.edu.hnit.schedule.viewmodel.ScheduleFragmentViewModel;
 
 import static android.view.View.inflate;
 
@@ -39,13 +41,17 @@ public class ScheduleFragment extends MyFragment {
     public int week;
     private CourseController courseController;
     private FragmentScheduleBinding mBinding;
+    private ScheduleFragmentViewModel mViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
+        mViewModel = new ScheduleFragmentViewModel();
+        mViewModel = ViewModelProviders.of(this).get(ScheduleFragmentViewModel.class);
+        mViewModel.setWeek(week);
         courseController = new CourseController(this);
-        if (this.week == new DateRepository(getContext()).getCurrentWeek()) {
+        if (mViewModel.getWeek() == new DateRepository(getContext()).getCurrentWeek()) {
             markWeekDay();
         }
         initTextColor();
@@ -56,6 +62,10 @@ public class ScheduleFragment extends MyFragment {
     //设置周数
     public void setWeek(int week) {
         this.week = week;
+    }
+
+    public int getWeek() {
+        return mViewModel.getWeek();
     }
 
     //标记星期
@@ -95,13 +105,18 @@ public class ScheduleFragment extends MyFragment {
 
     //加载课程
     private void loadCourses() {
-        for (CourseView course: courseController.getCourses_()) {
-            mBinding.schedule.addView(course);
-            addOnClickCourseEvent(course);
-        }
-        for (CourseView course: courseController.getCourses()) {
-            mBinding.schedule.addView(course);
-            addOnClickCourseEvent(course);
+        if (getContext() != null) {
+            SettingRepository mRepository = new SettingRepository(getContext());
+            if (!mRepository.getSwitchOption("ui_not_current_week")) {
+                for (CourseView course : courseController.getCourses_()) {
+                    mBinding.schedule.addView(course);
+                    addOnClickCourseEvent(course);
+                }
+            }
+            for (CourseView course : courseController.getCourses()) {
+                mBinding.schedule.addView(course);
+                addOnClickCourseEvent(course);
+            }
         }
     }
 

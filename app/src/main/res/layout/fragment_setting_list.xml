@@ -49,6 +49,22 @@
                 android:textColor="@{textColor}"
                 android:textSize="18sp" />
 
+            <Switch
+                android:id="@+id/ui_not_current_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:checked="@{vm.notCurrentWeekOption}"
+                android:onCheckedChanged="@{(cb, isChecked)->vm.setNotCurrentWeekOption(isChecked)}"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@string/ui_not_current_course"
+                android:textColor="@{textColor}"
+                android:textSize="18sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

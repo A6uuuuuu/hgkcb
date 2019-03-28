@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -65,8 +66,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public void reload() {
+        Log.d("PagerAdapter", "reload: 已执行");
         fragments.clear();
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < MAX_WEEK; i++) {
             ScheduleFragment scheduleFragment = new ScheduleFragment();
             scheduleFragment.setWeek(i);
             fragments.add(i, scheduleFragment);
