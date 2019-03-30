@@ -4,11 +4,14 @@ import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +21,11 @@ import cn.edu.hnit.schedule.model.Course;
 import static android.content.ContentValues.TAG;
 
 public class JsoupUtil {
+
+    /*
+        2019/2/26   write by liuwenkiii
+        以下为解析课程的方法
+     */
 
     //解析请求课程表的响应内容
     public boolean parseResponse(String response, String targetClassName) {
@@ -176,4 +184,19 @@ public class JsoupUtil {
         return academy;
     }
 
+    /*
+        2019/3/30   write by liuwenkiii
+        以下为解析成绩的方法
+     */
+    public Map parseGrade(String response) {
+        Document gradeTable = Jsoup.parse(response);
+        Elements courses = gradeTable.getElementsByClass("smartTr");
+        Map<String, String> data = new HashMap<>();
+        for (Element course : courses) {
+            String name = course.child(4).text();
+            String grade = course.child(5).text();
+            data.put(name, grade);
+        }
+        return data;
+    }
 }

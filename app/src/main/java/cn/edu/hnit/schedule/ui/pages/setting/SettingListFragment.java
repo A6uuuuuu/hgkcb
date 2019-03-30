@@ -1,6 +1,7 @@
 package cn.edu.hnit.schedule.ui.pages.setting;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import cn.edu.hnit.schedule.R;
 import cn.edu.hnit.schedule.custom.MyFragment;
 import cn.edu.hnit.schedule.databinding.FragmentSettingListBinding;
 import cn.edu.hnit.schedule.repository.SettingRepository;
+import cn.edu.hnit.schedule.ui.pages.grade.GradeActivity;
 import cn.edu.hnit.schedule.util.SettingUtil;
 import cn.edu.hnit.schedule.viewmodel.SettingListViewModel;
 import es.dmoral.toasty.Toasty;
@@ -50,7 +52,14 @@ public class SettingListFragment extends MyFragment {
             }
         });
         mBinding.emmm.setOnClickListener(view -> surprise());
+        mBinding.grade.setOnClickListener(view -> jump2Grade());
         return mBinding.getRoot();
+    }
+
+    //跳转到成绩查询
+    private void jump2Grade() {
+        Intent intent = new Intent(getActivity(), GradeActivity.class);
+        startActivity(intent);
     }
 
     //设置监听引导用户至白名单

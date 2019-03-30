@@ -22,6 +22,7 @@ public class HttpUtil {
     private static final String login2_url = "http://jwgl.hnit.edu.cn/Logon.do?method=logonBySSO";
     private static final String course_url = "http://jwgl.hnit.edu.cn/zcbqueryAction.do?method=goQueryZKbByXzbj";
     private static final String studentInfo_url = "http://jwgl.hnit.edu.cn/xszhxxAction.do?method=addStudentPic&tktime=";
+    private static final String grade_url = "http://jwgl.hnit.edu.cn/xszqcjglAction.do?method=queryxscj";
 
     public HttpUtil() {
         this.client = new OkHttpClient.Builder()
@@ -119,6 +120,30 @@ public class HttpUtil {
                 .header("Host", "jwgl.hnit.edu.cn")
                 .header("Proxy-Connection", "Keep-Alive")
                 .header("Referer", "http://jwgl.hnit.edu.cn/framework/new_window.jsp?lianjie=&winid=win2")
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko")
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
+    public void getGrade(String time, okhttp3.Callback callback) {
+        FormBody gradeFormBody = new FormBody.Builder()
+            .add("kcmc", "")
+            .add("kcxz", "")
+            .add("kksj", time)              //time -> exp:2018-2019-1
+            .add("ok", "")
+            .add("xsfs", "qbcj")    //qbcj -> 全部成绩
+            .build();
+        Request request = new Request.Builder()
+                .post(gradeFormBody)
+                .url(grade_url)
+                .header("Accept", "text/html, application/xhtml+xml, image/jxr, */*")
+                .header("Accept-Encoding", "deflate")
+                .header("Accept-Language", "zh-Hans-CN, zh-Hans; q=0.8, en-US; q=0.5, en; q=0.3")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .header("Host", "jwgl.hnit.edu.cn")
+                .header("Pragma", "no-cache")
+                .header("Proxy-Connection", "Keep-Alive")
+                .header("Referer", "http://jwgl.hnit.edu.cn/jiaowu/cjgl/xszq/query_xscj.jsp?tktime=" + System.currentTimeMillis())
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko")
                 .build();
         client.newCall(request).enqueue(callback);

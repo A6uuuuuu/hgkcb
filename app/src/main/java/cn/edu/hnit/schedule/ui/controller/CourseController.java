@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -87,10 +88,12 @@ public class CourseController {
         name.setTextSize(TypedValue.COMPLEX_UNIT_SP, mRepository.getSeekBarOption("ui_text_size"));
         name.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         name.setPadding(TEXT_PADDING_NAME, TEXT_PADDING_TOP, TEXT_PADDING_NAME, 0);
-        CardView.LayoutParams nameParams = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        CardView.LayoutParams nameParams = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         nameParams.gravity = Gravity.TOP;
         name.setLayoutParams(nameParams);
         name.setLineSpacing(0, TEXT_SPACING);
+        name.setMaxLines(5);
+        name.setEllipsize(TextUtils.TruncateAt.END);
 
         //课程地点设置
         TextView place = new TextView(context);

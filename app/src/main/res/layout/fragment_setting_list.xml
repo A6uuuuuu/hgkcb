@@ -235,6 +235,20 @@
                 android:textColor="#bbb"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="24dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="8dp"
+                android:text="成绩查询"
+                android:textSize="18sp"
+                tools:ignore="UnusedAttribute" />
+
         </LinearLayout>
     </ScrollView>
 
