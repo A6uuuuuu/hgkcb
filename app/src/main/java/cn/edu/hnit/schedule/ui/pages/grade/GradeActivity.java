@@ -1,7 +1,6 @@
 package cn.edu.hnit.schedule.ui.pages.grade;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -29,7 +28,14 @@ public class GradeActivity extends MyActivity implements LoginForGradeFragment.Q
     }
 
     @Override
-    public void showGrade(Map data) {
+    public void showGrade() {
+        runOnUiThread(() -> {
+            mBinding.gradeView.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void setGrade(Map data) {
         StringBuilder content = new StringBuilder();
         Iterator<Map.Entry<String, String>> iterator = data.entrySet().iterator();
         while (iterator.hasNext()) {

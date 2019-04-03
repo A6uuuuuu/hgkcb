@@ -17,7 +17,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".ui.pages.grade.GradeActivity"></activity>
 
         <meta-data
             android:name="design_width_in_dp"
@@ -40,6 +39,7 @@
         <activity android:name=".ui.pages.info.CourseInfoActivity" />
         <activity android:name=".ui.pages.add.AddCourseActivity" />
         <activity android:name=".ui.pages.setting.SettingActivity" />
+        <activity android:name=".ui.pages.grade.GradeActivity" />
         <activity
             android:name=".ui.pages.main.MainActivity"
             android:theme="@style/LaunchScreenTheme">
@@ -62,6 +62,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/schedule_widget_info" />
         </receiver>
+
     </application>
 
 </manifest>

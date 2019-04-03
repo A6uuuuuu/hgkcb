@@ -13,6 +13,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.internal.annotations.EverythingIsNonNull;
 
+/*
+    这个类用来封装教务系统的登录、获取课表数据的请求
+
+    2019/04/02 更新：
+        获取课表数据有两种方式，一种是在已登录的情况下可以直接发送get请求到对应url，这种不需要获取班级和学院
+        另一种则是发送post请求，这种需要班级和学院，不然会返回一张总课表，解析十分耗费时间
+        此前一直使用post方式=-=，直到某个学妹找我说和超级课程表的课表不一样我才发现get的方式
+        打算先留着，因为post方式可以查询全校的课表
+ */
+
 public class HttpUtil {
 
     private OkHttpClient client;
@@ -21,6 +31,7 @@ public class HttpUtil {
     private static final String login_url = "http://jwgl.hnit.edu.cn/Logon.do?method=logon";
     private static final String login2_url = "http://jwgl.hnit.edu.cn/Logon.do?method=logonBySSO";
     private static final String course_url = "http://jwgl.hnit.edu.cn/zcbqueryAction.do?method=goQueryZKbByXzbj";
+    private static final String course_url_ = "http://jwgl.hnit.edu.cn/tkglAction.do?method=goListKbByXs&istsxx=no&xnxqh=";
     private static final String studentInfo_url = "http://jwgl.hnit.edu.cn/xszhxxAction.do?method=addStudentPic&tktime=";
     private static final String grade_url = "http://jwgl.hnit.edu.cn/xszqcjglAction.do?method=queryxscj";
 
@@ -73,6 +84,7 @@ public class HttpUtil {
         call_login.enqueue(callback);
     }
 
+    //targetAcademy -> 目标学院   targetTime -> 目标学期
     public void getCourses(String targetAcademy, String targetTime, okhttp3.Callback callback) {
         FormBody courseFormBody = new FormBody.Builder()
                 .add("lb", "queryzkb.jsp")
@@ -102,6 +114,21 @@ public class HttpUtil {
                 .header("Pragma", "no-cache")
                 .build();
         client.newCall(request_courses).enqueue(callback);
+    }
+
+    //time -> 要查询的学期
+    public void getCourses_(String time, okhttp3.Callback callback) {
+        Request request = new Request.Builder()
+                .get().url(course_url_ + time)
+                .header("Accept", "text/html, application/xhtml+xml, image/jxr, */*")
+                .header("Accept-Encoding", "deflate")
+                .header("Accept-Language", "zh-Hans-CN, zh-Hans; q=0.8, en-US; q=0.5, en; q=0.3")
+                .header("Host", "jwgl.hnit.edu.cn")
+                .header("Pragma", "no-cache")
+                .header("Proxy-Connection", "Keep-Alive")
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko")
+                .build();
+        client.newCall(request).enqueue(callback);
     }
 
     public void login2(okhttp3.Callback callback) {

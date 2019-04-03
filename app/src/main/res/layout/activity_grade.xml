@@ -87,6 +87,19 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:text="成绩查询中..."
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="421dp" />
+
+                <TextView
+                    android:id="@+id/tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="ps:我知道这个界面超简陋但是没办法啊我好懒的QwQ"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="421dp" />

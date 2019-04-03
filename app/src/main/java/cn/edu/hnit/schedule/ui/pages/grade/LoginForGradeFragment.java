@@ -59,12 +59,13 @@ public class LoginForGradeFragment extends Fragment implements GradeRepository.G
     }
 
     public interface QueryCallBack {
-        void showGrade(Map data);
+        void showGrade();
+        void setGrade(Map data);
     }
 
     @Override
     public void showGrade(Map data) {
-        callBack.showGrade(data);
+        callBack.setGrade(data);
     }
 
     @Override
@@ -91,6 +92,7 @@ public class LoginForGradeFragment extends Fragment implements GradeRepository.G
         if (xq.length() < 1) {
             error("请选择学期");
         } else {
+            callBack.showGrade();
             String usr = mBinding.user.getText().toString();
             String passwd = mBinding.passwd.getText().toString();
             String vercode = mBinding.input.getText().toString();

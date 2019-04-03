@@ -84,7 +84,7 @@ public class CourseRepository {
                             if (response.body() != null) {
                                 Matcher m = p.matcher(response.body().string().substring(0, 200));
                                 if (response.isSuccessful() & m.find()) {
-                                    getInfo();
+                                    getCourses();
                                 } else {
                                     //登录失败
                                     error("登陆失败，教务系统繁忙");
@@ -101,7 +101,12 @@ public class CourseRepository {
         });
     }
 
-    //获取用户学院和班级,如果不按学院班级检索会大大减慢解析速度
+    /*
+        获取用户学院和班级,如果不按学院班级检索会大大减慢解析速度
+
+        2019/04/02 更新：
+            改用get方法后就不用获取学院和班级的数据了
+
     private void getInfo() {
         httpUtil.getTarget(new Callback() {
             @Override@EverythingIsNonNull
@@ -117,7 +122,7 @@ public class CourseRepository {
                     String academy = new JsoupUtil().parseForAcademy(r);
                     String className = new JsoupUtil().parseForClassName(r);
                     Log.d("parseForTarget", "onResponse: " + academy + " " + className);
-                    getCourses(academy, getCurrentXq(), className);
+                    getCourses();
                 } else {
                     error("获取课表失败，教务系统繁忙");
                     dismiss();
@@ -125,9 +130,37 @@ public class CourseRepository {
             }
         });
     }
+     */
 
     //获取课程表
-    private void getCourses(String targetAcademy, String targetXq, String targetClassName) {
+    private void getCourses() {
+        httpUtil.getCourses_(getCurrentXq(), new Callback() {
+            @Override@EverythingIsNonNull
+            public void onFailure(Call call, IOException e) {
+                error("获取课表失败，请检查网络连接");
+                dismiss();
+            }
+
+            @Override@EverythingIsNonNull
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    JsoupUtil jsoupUtil = new JsoupUtil();
+                    LitePal.deleteAll(Course.class, "id > ?", "0");
+                    if (response.body() != null) {
+                        if (jsoupUtil.parseResponse(response.body().string())) {
+                            success();
+                            refreshUi();
+                            dismiss();
+                        }
+                    } else {
+                        error("获取课表失败，教务系统繁忙");
+                        dismiss();
+                    }
+                }
+            }
+        });
+
+        /*
         httpUtil.getCourses( targetAcademy, targetXq, new Callback() {
             @Override@EverythingIsNonNull
             public void onFailure(Call call, IOException e) {
@@ -153,6 +186,8 @@ public class CourseRepository {
                 }
             }
         });
+        */
+
     }
 
     //获取当前学期
@@ -177,6 +212,7 @@ public class CourseRepository {
 
     /*
         这里插入一点UI操作
+        用接口的方式实现应该更优雅吧？但这样没啥大问题就忽略了=-=
      */
     private void error(String str) {
         if (fragment != null) {
