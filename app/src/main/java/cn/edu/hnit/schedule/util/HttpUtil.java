@@ -30,8 +30,8 @@ public class HttpUtil {
     private static final String vercode_url = "http://jwgl.hnit.edu.cn/verifycode.servlet";
     private static final String login_url = "http://jwgl.hnit.edu.cn/Logon.do?method=logon";
     private static final String login2_url = "http://jwgl.hnit.edu.cn/Logon.do?method=logonBySSO";
-    private static final String course_url = "http://jwgl.hnit.edu.cn/zcbqueryAction.do?method=goQueryZKbByXzbj";
-    private static final String course_url_ = "http://jwgl.hnit.edu.cn/tkglAction.do?method=goListKbByXs&istsxx=no&xnxqh=";
+    private static final String course_url_post = "http://jwgl.hnit.edu.cn/zcbqueryAction.do?method=goQueryZKbByXzbj";
+    private static final String course_url_get = "http://jwgl.hnit.edu.cn/tkglAction.do?method=goListKbByXs&istsxx=no&xnxqh=";
     private static final String studentInfo_url = "http://jwgl.hnit.edu.cn/xszhxxAction.do?method=addStudentPic&tktime=";
     private static final String grade_url = "http://jwgl.hnit.edu.cn/xszqcjglAction.do?method=queryxscj";
 
@@ -102,7 +102,7 @@ public class HttpUtil {
                 .build();
         Request request_courses = new Request.Builder()
                 .post(courseFormBody)
-                .url(course_url)
+                .url(course_url_post)
                 .header("Accept", "text/html, application/xhtml+xml, image/jxr, */*")
                 .header("Referer", "http://jwgl.hnit.edu.cn/jiaowu/pkgl/zkb/queryzkb.jsp?tktime=" + System.currentTimeMillis())
                 .header("Accept-Language", "zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.5,en;q=0.3")
@@ -119,7 +119,7 @@ public class HttpUtil {
     //time -> 要查询的学期
     public void getCourses_(String time, okhttp3.Callback callback) {
         Request request = new Request.Builder()
-                .get().url(course_url_ + time)
+                .get().url(course_url_get + time)
                 .header("Accept", "text/html, application/xhtml+xml, image/jxr, */*")
                 .header("Accept-Encoding", "deflate")
                 .header("Accept-Language", "zh-Hans-CN, zh-Hans; q=0.8, en-US; q=0.5, en; q=0.3")

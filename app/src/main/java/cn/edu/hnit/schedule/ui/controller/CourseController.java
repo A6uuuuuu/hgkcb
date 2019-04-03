@@ -54,8 +54,8 @@ public class CourseController {
     private List<CourseView> _courses = new ArrayList<>();
     private Map<String, Integer> courseColor = new HashMap<>();
     private Integer index = 0;
-    private String[] darkColors = {"","#bdd1dd", "#d99ea2", "#9ac6c0", "#dbc57a", "#8da7c6", "#a8b4e2", "#89b1a2", "#d4b04e", "#82bbad", "#eadacb"};
-    private String[] colors = {"","#d0e6f4", "#fdb7bc", "#b4e9e2", "#fde38c", "#acd9f3", "#becbff", "#a7d7c5", "#facf5a", "#99ddcc", "#ffecda"};
+    private String[] darkColors = {"","#bdd1dd", "#d99ea2", "#9ac6c0", "#dbc57a", "#8da7c6", "#a8b4e2", "#89b1a2", "#d4b04e", "#82bbad", "#eadacb", "#c9d9ae", "#91bbab", "#c1d7d8", "#c0b7d9", "#c9e0d7"};
+    private String[] colors = {"","#d0e6f4", "#fdb7bc", "#b4e9e2", "#fde38c", "#acd9f3", "#becbff", "#ade6d8", "#facf5a", "#ffd3b6", "#ffecda", "#e2f4c4", "#a7d7c5", "#dcf4f5", "#dbd1f7", "#dcf2e9"};
 
     public CourseController(ScheduleFragment fragment) {
         this.currentWeek = fragment.getWeek();       //此处的currentWeek指当前页面的周数
@@ -137,7 +137,8 @@ public class CourseController {
                 String[] t = course.getTime().split(" ", 2);
                 int time[] = handleCourseTime(t);
                 String classRoom = handleClassRoom(course.getPlace());
-                addCourse(course.getId(), course.getName(), classRoom, time[0], time[1], time[2], inCurrentWeek(t[1]));
+                String courseName = handleCourseName(course.getName());
+                addCourse(course.getId(), courseName, classRoom, time[0], time[1], time[2], inCurrentWeek(t[1]));
                 //Log.d(TAG, "loadCourse: " + course.getName() + "inCurrentWeeks: " + inCurrentWeek(t[1]));
             }
         }
@@ -185,7 +186,14 @@ public class CourseController {
         return time;
     }
 
-    //处理教室信息，过滤一些不必要的字符
+    //处理课程名称
+    private String handleCourseName(String name) {
+        name = name.replace("（", "(")
+                .replace("）", ")");
+        return name;
+    }
+
+    //处理教室信息
     private String handleClassRoom(String classRoom) {
         classRoom = classRoom.replace("（", "")
                 .replace("(", "")
@@ -206,6 +214,9 @@ public class CourseController {
             index++;
         }
         courseColor.put(courseName, index);
+        if (index > 15) {
+            return index % 15 + 1;
+        }
         return index;
     }
 
