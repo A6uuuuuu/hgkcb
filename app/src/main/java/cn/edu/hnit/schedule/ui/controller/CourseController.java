@@ -144,7 +144,28 @@ public class CourseController {
         }
     }
 
+    /*
+        2019/04/16
+        新增了对单双周的判断，咳咳我知道代码有重复，但是我最近真的很忙就这样了吧能用就行
+     */
     private boolean inCurrentWeek(String courseTime) {
+
+        /*
+            2019/04/16
+            课程时间还存在单周双周的情况，之前没有遇到过现在来打个补丁哈哈
+         */
+        int parity = 0;
+        Pattern p1 = Pattern.compile("单");
+        Pattern p2 = Pattern.compile("双");
+        Matcher m1 = p1.matcher(courseTime);
+        Matcher m2 = p2.matcher(courseTime);
+        if (m1.find()) {
+            courseTime = courseTime.replace("单", "");
+            parity = 1;
+        } else if (m2.find()) {
+            courseTime = courseTime.replace("双", "");
+            parity = 2;
+        }
         String[] weeks = courseTime.split("\\)\\(", 2);
         weeks[0] = weeks[0].replace("(", "")
                 .replace(")", "")
@@ -159,13 +180,33 @@ public class CourseController {
         String _weeks[] = weeks[0].split(",", limit);
         for (String week : _weeks) {
             m = r2.matcher(week);
-            if (m.find()) {
-                String[] range = week.split("-", 2);
-                if (currentWeek >= Integer.parseInt(range[0]) & currentWeek <= Integer.parseInt(range[1])) {
+            if (parity == 0) {
+                if (m.find()) {
+                    String[] range = week.split("-", 2);
+                    if (currentWeek >= Integer.parseInt(range[0]) & currentWeek <= Integer.parseInt(range[1])) {
+                        return true;
+                    }
+                } else if (Integer.parseInt(week) == currentWeek) {
                     return true;
                 }
-            } else if (Integer.parseInt(week) == currentWeek) {
-                return true;
+            } else if (parity == 1) {
+                if (m.find()) {
+                    String[] range = week.split("-", 2);
+                    if (currentWeek >= Integer.parseInt(range[0]) & currentWeek <= Integer.parseInt(range[1]) & currentWeek % 2 != 0) {
+                        return true;
+                    }
+                } else if (Integer.parseInt(week) == currentWeek) {
+                    return true;
+                }
+            } else {
+                if (m.find()) {
+                    String[] range = week.split("-", 2);
+                    if (currentWeek >= Integer.parseInt(range[0]) & currentWeek <= Integer.parseInt(range[1]) & currentWeek % 2 == 0) {
+                        return true;
+                    }
+                } else if (Integer.parseInt(week) == currentWeek) {
+                    return true;
+                }
             }
         }
         return false;
@@ -173,7 +214,7 @@ public class CourseController {
 
     //处理课程时间
     private int[] handleCourseTime(@NonNull String[] courseTime) {
-        int[] time = new int[3];
+        int[] time = new int[3];    //存储返回值
         int _time = Integer.parseInt(courseTime[0]);
         int length = courseTime[0].length();
         int week = _time / pow(length - 1) % 10;

@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.hnit.schedule.R;
