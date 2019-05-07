@@ -13,9 +13,9 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/weekday_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_mon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
@@ -39,13 +39,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/mon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/mon"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/mon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/mon"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/date_mon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/22"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -59,13 +73,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/tues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/tues"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/tues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/tues"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/date_tues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/23"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -79,13 +107,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/wed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/wed"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/wed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/wed"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/date_wed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/24"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -99,13 +141,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/thur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/thur"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/thur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/thur"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/date_thur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/25"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -119,13 +175,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/fri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/fri"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/date_fri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/26"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/fri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/fri"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -139,13 +209,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/sat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/sat"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/sat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/sat"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/date_sat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/27"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -159,13 +243,27 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
 
-                <TextView
-                    android:id="@+id/sun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/sun"
-                    android:textColor="@{textColor}" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/date_sun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="04/28"
+                        android:textColor="@{textColor}" />
+
+                    <TextView
+                        android:id="@+id/sun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:text="@string/sun"
+                        android:textColor="@{textColor}" />
+                </FrameLayout>
+
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
@@ -178,7 +276,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/weekday_bar">
 
             <GridLayout
                 android:id="@+id/schedule"

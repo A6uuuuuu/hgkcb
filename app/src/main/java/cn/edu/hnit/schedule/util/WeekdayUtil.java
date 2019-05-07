@@ -30,4 +30,29 @@ public class WeekdayUtil {
         return num;
     }
 
+    public int zhou2Int(String weekday) {
+        int num = 7;
+        switch (weekday) {
+            case "周一":
+                num = 1;
+                break;
+            case "周二":
+                num = 2;
+                break;
+            case "周三":
+                num = 3;
+                break;
+            case "周四":
+                num = 4;
+                break;
+            case "周五":
+                num = 5;
+                break;
+            case "周六":
+                num = 6;
+                break;
+        }
+        return num;
+    }
+
 }

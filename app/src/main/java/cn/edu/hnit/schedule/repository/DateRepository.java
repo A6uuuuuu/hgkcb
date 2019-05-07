@@ -5,8 +5,12 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
+import cn.edu.hnit.schedule.util.WeekdayUtil;
 
 /*
     这个类用来计算一些即时数据
@@ -30,8 +34,14 @@ public class DateRepository {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
+    public int getWeekday() {
+        Date d = new Date();
+        SimpleDateFormat weekFormat = new SimpleDateFormat("E", Locale.CHINA);
+        return new WeekdayUtil().zhou2Int(weekFormat.format(d));
+    }
+
     //获取偏移周数
-    private int getOffset() {
+    public int getOffset() {
         if (context == null) {
             Log.d(TAG, "getOffset: context is null");
             return 0;
