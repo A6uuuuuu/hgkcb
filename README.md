@@ -22,7 +22,7 @@
 
 如果有好的想法或者建议欢迎**提交issues**，或者联系我  
 **QQ: 1143436070**  
-**G-mail: liuwenkiii@gmail.com**  
+**Email: liuwenkiii@gmail.com**  
 
 ### 本项目使用的开源库
 |  名称  | 项目地址 |
