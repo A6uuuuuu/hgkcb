@@ -23,6 +23,7 @@ public class CourseInfoActivity extends MyActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_course_info);
         refreshUi();
+        loadData();
         mBinding.back.setOnClickListener(view -> finish());
         mBinding.delete.setOnClickListener(view -> deleteCourse());
     }
@@ -73,6 +74,5 @@ public class CourseInfoActivity extends MyActivity {
         mBinding.setTitleColor(getTitleTextColor());
         mBinding.setTextColor(getContentTextColor());
         initStatusBar();
-        loadData();
     }
 }

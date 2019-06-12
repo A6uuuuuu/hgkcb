@@ -34,11 +34,13 @@ public class DateRepository {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
+    /*
     public int getWeekday() {
         Date d = new Date();
         SimpleDateFormat weekFormat = new SimpleDateFormat("E", Locale.CHINA);
         return new WeekdayUtil().zhou2Int(weekFormat.format(d));
     }
+    */
 
     //获取偏移周数
     public int getOffset() {
