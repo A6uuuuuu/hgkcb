@@ -3,8 +3,8 @@
 计划年底前完成（平时还是有点点忙的）
 
 ## 湖工课程表
-*湖南工学院的课程表app*
-
+*湖南工学院的课程表app*  
+下载地址：https://www.coolapk.com/apk/cn.edu.hnit.schedule
 ***
 
 第一次做android开发，就为学校写一款课程表app吧，超级课程表实在是太臃肿了。  
